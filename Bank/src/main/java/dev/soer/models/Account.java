@@ -6,17 +6,19 @@ public class Account {
 	private Double balance;
 	private String type;
 	private boolean approved;
+	private Integer userID;
 	
 	public Account() {
 		super();
 	}
 	
-	public Account(Integer id, Double balance, String type, boolean approved) {
+	public Account(Integer id, Double balance, String type, boolean approved, Integer userID) {
 		super();
 		this.id = id;
 		this.balance = balance;
 		this.type = type;
 		this.approved = approved;
+		this.userID = userID;
 	}
 	
 	// getters and setters
@@ -51,6 +53,14 @@ public class Account {
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
+	
+	public Integer getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Integer userID) {
+		this.userID = userID;
+	}
 
 	@Override
 	public int hashCode() {
@@ -60,6 +70,7 @@ public class Account {
 		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((userID == null) ? 0 : userID.hashCode());
 		return result;
 	}
 
@@ -89,15 +100,18 @@ public class Account {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
+		if (userID == null) {
+			if (other.userID != null)
+				return false;
+		} else if (!userID.equals(other.userID))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", type=" + type + ", approved=" + approved + "]";
+		return "Account [id=" + id + ", balance=" + balance + ", type=" + type + ", approved=" + approved + ", userID="
+				+ userID + "]";
 	}
-	
-	
-	
-	
+
 }

@@ -21,12 +21,12 @@ public class UserDAOTests {
 	public void getUserByID() {
 		List<User> users = new ArrayList<User>();
 		List<Account> accounts = new ArrayList<Account>();
-		accounts.add(new Account(1, 2000.54, "Savings", true));
+		accounts.add(new Account(1, 2000.54, "Savings", true, 2));
 		
 		User uTest = new User(2, "jsoer", "password", "Joseph", "Soer", "Customer", accounts);
 		users.add(uTest);
 		
-		Assert.assertEquals(uTest, udao.getUser(2));
+		Assert.assertEquals(uTest, udao.get(2));
 	}
 	
 }

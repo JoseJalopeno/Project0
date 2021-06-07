@@ -6,6 +6,6 @@ import dev.soer.models.User;
 
 public interface UserServices {
 
-	void login(Scanner scan);
+	User login(Scanner scan);
 	void register(Scanner scan);
 }

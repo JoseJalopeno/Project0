@@ -21,7 +21,7 @@ public class User {
 		this.password = password;
 		this.first = first;
 		this.last = last;
-		this.type = type;
+		this.type = "Customer";
 		this.accounts = accounts;
 	}
 
