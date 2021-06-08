@@ -72,8 +72,8 @@ public class UserDAO implements GenericRepo<User> {
 	public User get(String user, String pass) {
 		User u = new User();
 		try {
-			String sql = "select u.id AS user_id, firstName, lastName, password, username, type, a.id AS account_id, accountType, balance, approved from users u "
-					+ "join accounts a on u.id = a.userID where u.username = ? and u.password = ?";
+			String sql = "select u.id AS user_id, firstName, lastName, password, username, type from users u "
+					+ "where u.username = ? and u.password = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, user);
 			ps.setString(2, pass);
@@ -85,7 +85,12 @@ public class UserDAO implements GenericRepo<User> {
 				u.setPassword(rs.getString("password"));
 				u.setUsername(rs.getString("username"));
 				u.setType(rs.getString("type"));
-				u.setAccounts(adao.getAll(rs.getInt("user_id")));
+				if(adao.getAll(rs.getInt("user_id")) != null) {
+					u.setAccounts(adao.getAll(rs.getInt("user_id")));
+				}
+				else {
+					u.setAccounts(null);
+				}
 				return u;
 			}
 		} catch(SQLException e) {

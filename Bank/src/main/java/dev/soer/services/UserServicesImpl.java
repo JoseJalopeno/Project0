@@ -1,13 +1,22 @@
 package dev.soer.services;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import dev.soer.data.UserDAO;
+import dev.soer.models.Transaction;
 import dev.soer.models.User;
 
 public class UserServicesImpl implements UserServices{
 	
 	private static UserDAO udao = new UserDAO();
+	private static TransactionServiceImpl ts = new TransactionServiceImpl();
 
 	@Override
 	public User login(Scanner scan) {
@@ -15,7 +24,14 @@ public class UserServicesImpl implements UserServices{
 		String user = scan.next();
 		System.out.println("Enter password:");
 		String pass = scan.next();
-		return udao.get(user, pass);
+		User u = udao.get(user, pass);
+		Transaction t = new Transaction();
+		t.setUserid(u.getId());
+		t.setUserAction("Login");
+		//Timestamp dateTime = new Timestamp(LocalDate.toInstant(ZoneOffset.UTC).toEpochMilli()), tzUTC);
+		t.setTimestamp(dateTime);
+		ts.addTransaction(t);
+		return u;
 	}
 
 	@Override
@@ -31,7 +47,22 @@ public class UserServicesImpl implements UserServices{
 		u.setLast(scan.next());
 		u.setType("Customer"); // set new accounts defaulted to Customer type
 		udao.add(u);
+		Transaction t = new Transaction();
+		t.setUserid(u.getId());
+		t.setUserAction("Register");
+		Time LocalDate = 
+		t.setTimestamp(LocalDate);
+		ts.addTransaction(t);
 		
+	}
+
+	@Override
+	public List<User> getUsers() {
+		List<User> users = new ArrayList<User>();
+		for(User u : udao.getAll()) {
+			users.add(u);
+		}
+		return users;
 	}
 
 }

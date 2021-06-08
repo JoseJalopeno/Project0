@@ -1,10 +1,13 @@
 package dev.soer.driver;
 
+import java.util.List;
 import java.util.Scanner;
 
 import dev.soer.models.Account;
+import dev.soer.models.Transaction;
 import dev.soer.models.User;
 import dev.soer.services.AccountServiceImpl;
+import dev.soer.services.TransactionServiceImpl;
 import dev.soer.services.UserServicesImpl;
 
 public class BankApp {
@@ -13,6 +16,8 @@ public class BankApp {
 	
 	private static UserServicesImpl us = new UserServicesImpl();
 	private static AccountServiceImpl as = new AccountServiceImpl();
+	private static TransactionServiceImpl ts = new TransactionServiceImpl();
+	
 	public static void main(String[] args) {
 		sc.useDelimiter(System.lineSeparator());
 		int choice = -1;
@@ -34,55 +39,65 @@ public class BankApp {
 									break;
 								}
 								case 2: { //check account balance
-									int count = 1;
-									for(Account a : u.getAccounts()) {
-										System.out.println(count + ". " + a.getType());
-										count++;
+									if(u.getAccounts().size() == 0) {
+										System.out.println("You have no accounts approved");
+										break;
 									}
-									int account = sc.nextInt();
-									System.out.println(as.checkAccount(u.getAccounts().get(account - 1)));
+									else {
+										int count = 1;
+										for(Account a : u.getAccounts()) {
+											System.out.println(count + ". " + a.getType());
+											count++;
+										}
+										int account = sc.nextInt();
+										System.out.println(as.checkAccount(u.getAccounts().get(account - 1)));
+									}
 									break;
 								}
 								case 3: { //deposit/withdrawal
-									int choice3 = -1;
-									while(choice3 != 3) {
-										System.out.println("1. Deposit\n2. Withdraw\n3. Go back");
-										choice3 = sc.nextInt();
-										switch(choice3) {
-											case 1: { //deposit
-												System.out.println("Which account to deposit into:");
-												int count = 1;
-												for(Account a : u.getAccounts()) {
-													System.out.println(count + ". " + a.getType());
-													count++;
+									if(u.getAccounts().size() != 0) {
+										int choice3 = -1;
+										while(choice3 != 3) {
+											System.out.println("1. Deposit\n2. Withdraw\n3. Go back");
+											choice3 = sc.nextInt();
+											switch(choice3) {
+												case 1: { //deposit
+													System.out.println("Which account to deposit into:");
+													int count = 1;
+													for(Account a : u.getAccounts()) {
+														System.out.println(count + ". " + a.getType());
+														count++;
+													}
+													int account = sc.nextInt();
+													System.out.println("How much do you want to deposit");
+													double amount = sc.nextDouble();
+													as.deposit(u.getAccounts().get(account - 1), amount);
+													System.out.println("New balance is: " + u.getAccounts().get(account - 1));
+													break;
 												}
-												int account = sc.nextInt();
-												System.out.println("How much do you want to deposit");
-												double amount = sc.nextDouble();
-												as.deposit(u.getAccounts().get(account - 1), amount);
-												System.out.println("New balance is: " + u.getAccounts().get(account - 1));
-												break;
-											}
-											case 2: { //withdrawal
-												System.out.println("Which account to withdraw from:");
-												int count = 1;
-												for(Account a : u.getAccounts()) {
-													System.out.println(count + ". " + a.getType());
-													count++;
+												case 2: { //withdrawal
+													System.out.println("Which account to withdraw from:");
+													int count = 1;
+													for(Account a : u.getAccounts()) {
+														System.out.println(count + ". " + a.getType());
+														count++;
+													}
+													int account = sc.nextInt();
+													System.out.println("How much do you want to withdraw");
+													double amount = sc.nextDouble();
+													as.withdraw(u.getAccounts().get(account - 1), amount);
+													System.out.println("New balance is: " + u.getAccounts().get(account - 1));
+													break;
 												}
-												int account = sc.nextInt();
-												System.out.println("How much do you want to withdraw");
-												double amount = sc.nextDouble();
-												as.withdraw(u.getAccounts().get(account - 1), amount);
-												System.out.println("New balance is: " + u.getAccounts().get(account - 1));
-												break;
-											}
-											case 3: {
-												break;
+												case 3: {
+													break;
+												}
 											}
 										}
 									}
-									
+									else {
+										System.out.println("You have no accounts approved.");
+									}
 									break;
 								}
 								case 4: { //logout
@@ -96,16 +111,27 @@ public class BankApp {
 							employeeMenu();
 							choice2 = sc.nextInt();
 							switch(choice2) {
-								case 1: { 
-									
+								case 1: { //approve accounts (currently can only do all accounts approved or no accounts approved
+									System.out.print("Unapproved accounts: ");
+									as.unapprovedAccounts(sc);
 									break;
 								}
-								case 2: {
-									
+								case 2: { //View customer accounts
+									List<User> users = us.getUsers();
+									int count = 1;
+									for(User user : users) {
+										System.out.println(count + ". " + user.getFirst() + " " + user.getLast());
+										count++;
+									}
+									int inputUser = sc.nextInt();
+									as.checkAll(inputUser);
 									break;
 								}
-								case 3: {
-									
+								case 3: { //view transaction log
+									List<Transaction> transactions = ts.getAllTransactions();
+									for(Transaction t : transactions) {
+										System.out.println(t);
+									}
 									break;
 								}
 								case 4: {
@@ -137,6 +163,6 @@ public class BankApp {
 		System.out.println("1. Apply for New Account\n2. Check Balance\n3. Deposit/Withdrawal\n4. Logout");
 	}
 	public static void employeeMenu() {
-		System.out.println("1.Approve Accounts\n2. View Customer Accounts\n3. View Transaction Log\n4. Logout");
+		System.out.println("1. Approve Accounts\n2. View Customer Accounts\n3. View Transaction Log\n4. Logout");
 	}
 }

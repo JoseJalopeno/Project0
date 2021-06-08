@@ -41,7 +41,7 @@ public class AccountDAO implements GenericRepo<Account>{
 		return null;
 	}
 
-	@Override // should return just a balance of an account for a user
+	@Override 
 	public Account get(Integer id) {
 		Account a = new Account();
 		String sql = "select id, accounttype, balance, approved, userid from accounts where id = ? and approved = true";
@@ -136,7 +136,7 @@ public class AccountDAO implements GenericRepo<Account>{
 	}
 	
 	public List<Account> getAll(Integer id) {
-		String sql = "select * from accounts a join users u on a.userid = u.id where a.userid = ?";
+		String sql = "select * from accounts a join users u on a.userid = u.id where a.userid = ? and approved = true";
 		List<Account> accounts = new ArrayList<Account>();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class AccountDAO implements GenericRepo<Account>{
 	
 	public List<Account> getUnapproved() {
 		List<Account> accounts = new ArrayList<Account>();
-		String sql = "select * from accounts where approvede = false";
+		String sql = "select * from accounts where approved = false";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();

@@ -110,8 +110,8 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", type=" + type + ", approved=" + approved + ", userID="
-				+ userID + "]";
+		//return "Account [id=" + id + ", balance=" + balance + ", type=" + type + ", approved=" + approved + ", userID=" + userID + "]";
+		return type + ": $" + balance;
 	}
 
 }
