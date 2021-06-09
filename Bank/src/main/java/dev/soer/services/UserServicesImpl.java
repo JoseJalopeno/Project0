@@ -13,6 +13,7 @@ import java.util.Scanner;
 import dev.soer.data.UserDAO;
 import dev.soer.models.Transaction;
 import dev.soer.models.User;
+import dev.soer.utils.AppLogger;
 
 public class UserServicesImpl implements UserServices{
 	
@@ -26,13 +27,19 @@ public class UserServicesImpl implements UserServices{
 		System.out.println("Enter password:");
 		String pass = scan.next();
 		User u = udao.get(user, pass);
-		Transaction t = new Transaction();
-		t.setUserid(u.getId());
-		t.setUserAction("Login");
-		Timestamp now = Timestamp.from(Instant.now());
-		t.setTimestamp(now);
-		ts.addTransaction(t);
-		return u;
+		if(u.getId() == null) {
+			System.out.println("Error please try again");
+			return null;
+		}
+		else {
+			Transaction t = new Transaction();
+			t.setUserid(u.getId());
+			t.setUserAction("Login");
+			Timestamp now = Timestamp.from(Instant.now());
+			t.setTimestamp(now);
+			ts.addTransaction(t);
+			return u;
+		}
 	}
 
 	@Override
@@ -54,6 +61,7 @@ public class UserServicesImpl implements UserServices{
 		Timestamp now = Timestamp.from(Instant.now());
 		t.setTimestamp(now);
 		ts.addTransaction(t);
+		AppLogger.logger.info("User registered for new account");
 		
 	}
 

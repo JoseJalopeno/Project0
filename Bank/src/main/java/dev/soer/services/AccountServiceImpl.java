@@ -11,6 +11,7 @@ import dev.soer.data.AccountDAO;
 import dev.soer.models.Account;
 import dev.soer.models.Transaction;
 import dev.soer.models.User;
+import dev.soer.utils.AppLogger;
 
 public class AccountServiceImpl implements AccountService{
 	AccountDAO adao = new AccountDAO();
@@ -63,6 +64,7 @@ public class AccountServiceImpl implements AccountService{
 	public Account withdraw(Account a, Double amount) {
 		if((a.getBalance() - amount) < 0) {
 			System.out.println("Enter a valid amount.");
+			AppLogger.logger.info("Customer tried to waithdraw more than account has");
 			return a;
 		}
 		else {
@@ -103,6 +105,18 @@ public class AccountServiceImpl implements AccountService{
 		System.out.println(adao.getAll(id));
 	}
 
-	
+	public void transfer(Account from, Account to, double amount) {
+		withdraw(from, amount);
+		if(amount > from.getBalance()) {
+			return;
+		}
+		deposit(to, amount);
+		Transaction t = new Transaction();
+		t.setUserid(from.getUserID());
+		t.setUserAction("Transfer");
+		Timestamp now = Timestamp.from(Instant.now());
+		t.setTimestamp(now);
+		ts.addTransaction(t);
+	}
 
 }
