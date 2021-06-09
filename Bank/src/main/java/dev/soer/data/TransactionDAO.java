@@ -16,13 +16,13 @@ public class TransactionDAO implements GenericRepo<Transaction>{
 	
 	@Override
 	public Transaction add(Transaction t) {
-		String sql = "insert into transactions values (default, ?, ?, ?) returning *";
-		LocalDateTime LocalDate = LocalDateTime.now();
+		String sql = "call addTransaction(?, ?, ?)"; //stored procedure from the database
+		
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, t.getUserid());
 			ps.setString(2, t.getUserAction());
-			ps.setObject(3, LocalDate);
+			ps.setTimestamp(3, t.getTimestamp());
 			boolean success = ps.execute();
 			
 			if(success) {

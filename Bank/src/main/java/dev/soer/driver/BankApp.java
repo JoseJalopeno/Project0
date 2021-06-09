@@ -111,12 +111,12 @@ public class BankApp {
 							employeeMenu();
 							choice2 = sc.nextInt();
 							switch(choice2) {
-								case 1: { //approve accounts (currently can only do all accounts approved or no accounts approved
+								case 1: { //approve accounts (currently can only do all accounts approved or no accounts approved)
 									System.out.print("Unapproved accounts: ");
 									as.unapprovedAccounts(sc);
 									break;
 								}
-								case 2: { //View customer accounts
+								case 2: { //View a customer accounts (gets all accounts for a single customer)
 									List<User> users = us.getUsers();
 									int count = 1;
 									for(User user : users) {
@@ -127,7 +127,7 @@ public class BankApp {
 									as.checkAll(inputUser);
 									break;
 								}
-								case 3: { //view transaction log
+								case 3: { //view transaction log across whole database
 									List<Transaction> transactions = ts.getAllTransactions();
 									for(Transaction t : transactions) {
 										System.out.println(t);
@@ -143,12 +143,12 @@ public class BankApp {
 					}
 					break;
 				}
-				case 2: {
+				case 2: { //registers a user accounts and allows them to login to then apply for new accounts
 					us.register(sc);
 					System.out.println("You have registered. Now please sign in.");
 					break;
 				}
-				case 3: {
+				case 3: { //quits the banking app
 					System.out.println("Goodbye...");
 					break;
 				}

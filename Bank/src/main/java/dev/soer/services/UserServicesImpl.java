@@ -2,6 +2,7 @@ package dev.soer.services;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -28,8 +29,8 @@ public class UserServicesImpl implements UserServices{
 		Transaction t = new Transaction();
 		t.setUserid(u.getId());
 		t.setUserAction("Login");
-		//Timestamp dateTime = new Timestamp(LocalDate.toInstant(ZoneOffset.UTC).toEpochMilli()), tzUTC);
-		t.setTimestamp(dateTime);
+		Timestamp now = Timestamp.from(Instant.now());
+		t.setTimestamp(now);
 		ts.addTransaction(t);
 		return u;
 	}
@@ -50,8 +51,8 @@ public class UserServicesImpl implements UserServices{
 		Transaction t = new Transaction();
 		t.setUserid(u.getId());
 		t.setUserAction("Register");
-		Time LocalDate = 
-		t.setTimestamp(LocalDate);
+		Timestamp now = Timestamp.from(Instant.now());
+		t.setTimestamp(now);
 		ts.addTransaction(t);
 		
 	}

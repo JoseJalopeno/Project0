@@ -1,5 +1,7 @@
 package dev.soer.services;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,8 @@ public class AccountServiceImpl implements AccountService{
 		Transaction t = new Transaction();
 		t.setUserid(u.getId());
 		t.setUserAction("Apply");
-		LocalDateTime LocalDate = LocalDateTime.now();
-		t.setTimestamp(LocalDate);
+		Timestamp now = Timestamp.from(Instant.now());
+		t.setTimestamp(now);
 		ts.addTransaction(t);
 		return a;
 	}
@@ -38,8 +40,8 @@ public class AccountServiceImpl implements AccountService{
 		Transaction t = new Transaction();
 		t.setUserid(a.getUserID());
 		t.setUserAction("Check Account Balance");
-		LocalDateTime LocalDate = LocalDateTime.now();
-		t.setTimestamp(LocalDate);
+		Timestamp now = Timestamp.from(Instant.now());
+		t.setTimestamp(now);
 		ts.addTransaction(t);
 		return adao.get(a.getId());
 	}
@@ -51,8 +53,8 @@ public class AccountServiceImpl implements AccountService{
 		Transaction t = new Transaction();
 		t.setUserid(a.getUserID());
 		t.setUserAction("Deposit");
-		LocalDateTime LocalDate = LocalDateTime.now();
-		t.setTimestamp(LocalDate);
+		Timestamp now = Timestamp.from(Instant.now());
+		t.setTimestamp(now);
 		ts.addTransaction(t);
 		return a;
 	}
@@ -69,8 +71,8 @@ public class AccountServiceImpl implements AccountService{
 			Transaction t = new Transaction();
 			t.setUserid(a.getUserID());
 			t.setUserAction("Withdraw");
-			LocalDateTime LocalDate = LocalDateTime.now();
-			t.setTimestamp(LocalDate);
+			Timestamp now = Timestamp.from(Instant.now());
+			t.setTimestamp(now);
 			ts.addTransaction(t);
 		}
 		return a;
