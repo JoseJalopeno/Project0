@@ -29,7 +29,7 @@ public class UserServicesImpl implements UserServices{
 		User u = udao.get(user, pass);
 		if(u.getId() == null) {
 			System.out.println("Error please try again");
-			return null;
+			return login(scan);
 		}
 		else {
 			Transaction t = new Transaction();

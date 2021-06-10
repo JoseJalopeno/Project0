@@ -102,7 +102,10 @@ public class AccountServiceImpl implements AccountService{
 		}
 	}
 	public void checkAll(Integer id) {
-		System.out.println(adao.getAll(id));
+		List<Account> accounts = adao.getAll(id);
+		for(Account a : accounts) {
+			System.out.println(a);
+		}
 	}
 
 	public void transfer(Account from, Account to, double amount) {

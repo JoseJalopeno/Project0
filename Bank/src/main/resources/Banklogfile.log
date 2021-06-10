@@ -44,3 +44,29 @@ INFO  | 2021-06-09 16:40:47 | [main] driver.BankApp (BankApp.java:23) - Program 
 INFO  | 2021-06-09 16:42:42 | [main] driver.BankApp (BankApp.java:23) - Program Started
 INFO  | 2021-06-09 16:43:58 | [main] driver.BankApp (BankApp.java:23) - Program Started
 INFO  | 2021-06-09 16:46:11 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:50:26 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:53:03 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:53:09 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:53:09 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 07:53:13 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:53:30 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:53:53 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:53:59 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:53:59 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 07:54:10 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:55:05 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:55:14 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:55:14 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 07:57:44 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:57:58 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:58:01 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:58:01 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 07:58:45 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:58:50 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:58:50 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 07:59:51 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 07:59:57 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 07:59:57 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 08:00:57 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 08:01:05 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 08:01:05 | [main] driver.BankApp (BankApp.java:37) - User logged in

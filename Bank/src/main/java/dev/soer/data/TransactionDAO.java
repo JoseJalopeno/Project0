@@ -52,7 +52,7 @@ public class TransactionDAO implements GenericRepo<Transaction>{
 	@Override
 	public List<Transaction> getAll() {
 		List<Transaction> transactions = new ArrayList<Transaction>();
-		String sql = "select * from transactions";
+		String sql = "select * from (select * from transactions order by id desc limit 10) g order by g.id";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();

@@ -44,6 +44,7 @@ public class BankApp {
 								switch(choice2) {
 									case 1: { //apply for account
 										as.apply(sc, u);
+										System.out.println("You have successfully applied for an account, the admin will approve it shortly.");
 										break;
 									}
 									case 2: { //check account balance
@@ -68,7 +69,7 @@ public class BankApp {
 										}
 										else {
 											int choice3 = -1;
-											while(choice3 != 3) {
+											while(choice3 != 4) {
 												System.out.println("1. Deposit\n2. Withdraw\n3. Transfer Between Accounts\n4. Go Back");
 												choice3 = sc.nextInt();
 												switch(choice3) {
