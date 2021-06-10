@@ -21,7 +21,10 @@ public class UserDAOTests {
 	public void getUserByID() {
 		List<User> users = new ArrayList<User>();
 		List<Account> accounts = new ArrayList<Account>();
-		accounts.add(new Account(1, 2000.54, "Savings", true, 2));
+		accounts.add(new Account(2, 201110.55, "Checking", true, 2));
+		accounts.add(new Account(1, 12234.54, "Savings", true, 2));
+		accounts.add(new Account(7, 10000.0, "Checking", true, 2));
+		accounts.add(new Account(11, 100.0, "Savings", true, 2));
 		
 		User uTest = new User(2, "jsoer", "password", "Joseph", "Soer", "Customer", accounts);
 		users.add(uTest);

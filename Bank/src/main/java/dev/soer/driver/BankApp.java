@@ -53,13 +53,12 @@ public class BankApp {
 											break;
 										}
 										else {
-											int count = 1;
+											System.out.println("Your accounts: ");
 											for(Account a : u.getAccounts()) {
-												System.out.println(count + ". " + a.getType());
-												count++;
+												System.out.println(a);
 											}
-											int account = sc.nextInt();
-											System.out.println(as.checkAccount(u.getAccounts().get(account - 1)));
+											String account = sc.next();
+											//System.out.println(as.checkAccount(u.getAccounts().get(account - 1)));
 										}
 										break;
 									}
@@ -80,11 +79,15 @@ public class BankApp {
 															System.out.println(count + ". " + a);
 															count++;
 														}
-														int account = sc.nextInt();
-														System.out.println("How much do you want to deposit");
+														int accountnum = sc.nextInt();
+														if((accountnum) > u.getAccounts().size()) {
+															System.out.println("Enter valid account number");
+															break;
+														}
+														System.out.println("How much do you want to deposit?");
 														double amount = sc.nextDouble();
-														as.deposit(u.getAccounts().get(account - 1), amount);
-														System.out.println("New balance is: " + u.getAccounts().get(account - 1));
+														as.deposit(u.getAccounts().get(accountnum - 1), amount);
+														System.out.println("New balance is: " + u.getAccounts().get(accountnum - 1));
 														break;
 													}
 													case 2: { //withdrawal
@@ -94,11 +97,15 @@ public class BankApp {
 															System.out.println(count + ". " + a);
 															count++;
 														}
-														int account = sc.nextInt();
-														System.out.println("How much do you want to withdraw");
+														int accountnum = sc.nextInt();
+														if(accountnum > u.getAccounts().size()) {
+															System.out.println("Enter valid account number");
+															break;
+														}
+														System.out.println("How much do you want to withdraw?");
 														double amount = sc.nextDouble();
-														as.withdraw(u.getAccounts().get(account - 1), amount);
-														System.out.println("New balance is: " + u.getAccounts().get(account - 1));
+														as.withdraw(u.getAccounts().get(accountnum - 1), amount);
+														System.out.println("New balance is: " + u.getAccounts().get(accountnum - 1));
 														break;
 													}
 													case 3: {
@@ -117,7 +124,11 @@ public class BankApp {
 																count++;
 															}
 															int to = sc.nextInt();
-															System.out.println("Enter how much you want to transfer:");
+															if(from > u.getAccounts().size() || to > u.getAccounts().size()) {
+																System.out.println("Enter valid account number");
+																break;
+															}
+															System.out.println("Enter how much you want to transfer?");
 															double amount = sc.nextDouble();
 															System.out.println("Are you sure you want to transfer " + amount + ". (Y/N)");
 															String response = sc.next();
@@ -188,11 +199,15 @@ public class BankApp {
 				}
 				case 2: { //registers a user accounts and allows them to login to then apply for new accounts
 					us.register(sc);
-					System.out.println("You have registered. Now please sign in.");
 					break;
 				}
 				case 3: { //quits the banking app
 					System.out.println("Goodbye...");
+					sc.close();
+					break;
+				}
+				default: {
+					System.out.println("Enter a valid option");
 					break;
 				}
 			}

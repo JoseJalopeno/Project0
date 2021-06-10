@@ -49,6 +49,11 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Account deposit(Account a, Double amount) {
+		if(amount < 0) {
+			System.out.println("Enter a valid amount");
+			AppLogger.logger.info("Customer tried to deposit less than 0 dollars");
+			return a;
+		}
 		a.setBalance(a.getBalance() + amount);
 		adao.update(a);
 		Transaction t = new Transaction();
@@ -62,9 +67,9 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Account withdraw(Account a, Double amount) {
-		if((a.getBalance() - amount) < 0) {
+		if((a.getBalance() - amount) < 0 || amount < 0) {
 			System.out.println("Enter a valid amount.");
-			AppLogger.logger.info("Customer tried to waithdraw more than account has");
+			AppLogger.logger.info("Customer tried to withdraw more than account has");
 			return a;
 		}
 		else {

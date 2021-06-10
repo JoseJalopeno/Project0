@@ -54,14 +54,27 @@ public class UserServicesImpl implements UserServices{
 		System.out.println("Enter lastname:");
 		u.setLast(scan.next());
 		u.setType("Customer"); // set new accounts defaulted to Customer type
-		udao.add(u);
-		Transaction t = new Transaction();
-		t.setUserid(u.getId());
-		t.setUserAction("Register");
-		Timestamp now = Timestamp.from(Instant.now());
-		t.setTimestamp(now);
-		ts.addTransaction(t);
-		AppLogger.logger.info("User registered for new account");
+		System.out.println("Is this information correct?");
+		System.out.println("Username: " + u.getUsername());
+		System.out.println("Name: " + u.getFirst() + " " + u.getLast());
+		System.out.println("Password: " + u.getPassword());
+		System.out.println("(Y/N)");
+		String response = scan.next();
+		if(response.equalsIgnoreCase("y")) {
+			udao.add(u);
+			Transaction t = new Transaction();
+			t.setUserid(u.getId());
+			t.setUserAction("Register");
+			Timestamp now = Timestamp.from(Instant.now());
+			t.setTimestamp(now);
+			ts.addTransaction(t);
+			AppLogger.logger.info("User registered for new account");
+			System.out.println("You have registered. Now please sign in.");
+		}
+		else {
+			System.out.println("Deleting information.");
+			return;
+		}
 		
 	}
 
