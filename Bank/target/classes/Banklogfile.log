@@ -135,3 +135,7 @@ INFO  | 2021-06-10 10:43:26 | [main] driver.BankApp (BankApp.java:37) - User log
 INFO  | 2021-06-10 10:44:26 | [main] driver.BankApp (BankApp.java:23) - Program Started
 INFO  | 2021-06-10 10:44:32 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
 INFO  | 2021-06-10 10:44:32 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 10:49:44 | [main] driver.BankApp (BankApp.java:23) - Program Started
+INFO  | 2021-06-10 10:49:48 | [main] services.TransactionServiceImpl (TransactionServiceImpl.java:15) - Transaction added to database
+INFO  | 2021-06-10 10:49:48 | [main] driver.BankApp (BankApp.java:37) - User logged in
+INFO  | 2021-06-10 10:49:56 | [main] services.AccountServiceImpl (AccountServiceImpl.java:72) - Customer tried to withdraw more than account has
